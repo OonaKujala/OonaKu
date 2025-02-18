@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kello</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body onload="paivitaKello();">
+  <p id="Kello">
+    JavaScript ei päällä tai jotain meni vikaan.
+  </p>
+
+  <script>
+    /**
+     * funktio kellonajan päivittämiseen sivulla.
+     */
+    function paivitaKello(){
+      // alustetaan tämänhetkinen aika vakioon nyt
+      const nyt = new Date();
+
+    // haetaan tunnit, minuutit ja sekunnit omiin muuttujiinsa
+    let t = nyt.getHours();
+    let m = nyt.getMinutes();
+    let s = nyt.getSeconds();
+
+    // muotoillaan (lisätään etunolla) tunnit, minuutit ja sekunnit tarvittaessa
+    t = muotoile (t);
+    m = muotoile (m);
+    s = muotoile (s);
+
+    // tulostetaan kellonaika muodossa tunnit, minuutit ja sekunnit p-elementtiin, jonka attribuutin 
+    // class arvona on "kello"
+      document.getElementById('Kello').innerHTML = 
+              t + ":" + m + ":" + s;
+      //suoritetaan tämä funktiota sekunnin välein eli 1000 ms välein
+      setTimeout(paivitaKello, 1000);
+    }
+    /**
+     * Apufunktio ajan muotoiluun (lisää etunollan tarvittaessa.)
+    */
+    function muotoile(aika) {
+      if (aika < 10 ){
+        aika = "0" + aika;
+      }
+      return aika;
+    }
+     
+  </script>
+</body>
+</html>
